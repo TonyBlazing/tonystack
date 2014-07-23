@@ -212,9 +212,8 @@ class RPCAllocateFixedIP(object):
                         host))
             else:
                 # i am the correct host, run here
-                tempIP=self.allocate_fixed_ip(context, instance_id, network,
+                self.allocate_fixed_ip(context, instance_id, network,
                                        vpn=vpn, address=address)
-		if(tempIP != None):
 			break
         # wait for all of the allocates (if any) to finish
         for gt in green_threads:
