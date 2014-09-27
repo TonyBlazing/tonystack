@@ -214,7 +214,7 @@ class RPCAllocateFixedIP(object):
                 # i am the correct host, run here
                 self.allocate_fixed_ip(context, instance_id, network,
                                        vpn=vpn, address=address)
-			break
+
         # wait for all of the allocates (if any) to finish
         for gt in green_threads:
             gt.wait()
@@ -1517,10 +1517,8 @@ class FlatManager(NetworkManager):
                                 requested_networks if network['uuid'] == uuid):
                     break
 
-            tempIP=self.allocate_fixed_ip(context, instance_id,network, address=address)
-	    if(tempIP != None):
-		adress=tempIP
-		break
+            self.allocate_fixed_ip(context, instance_id,
+                                   network, address=address)
 
     def deallocate_fixed_ip(self, context, address, host=None, teardown=True,
             instance=None):
